@@ -426,8 +426,8 @@ class _CropPainter extends CustomPainter {
 
   currentRact(size) {
     return Rect.fromLTWH(
-      handleSize / 2,
-      handleSize / 2,
+      5,
+      5,
       size.width,
       size.height,
     );
