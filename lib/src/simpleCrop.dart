@@ -428,8 +428,8 @@ class _CropPainter extends CustomPainter {
     return Rect.fromLTWH(
       handleSize / 2,
       handleSize / 2,
-      size.width - handleSize,
-      size.height - handleSize,
+      size.width,
+      size.height,
     );
   }
 
