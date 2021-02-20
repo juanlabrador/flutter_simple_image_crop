@@ -21,6 +21,9 @@ class ImgCrop extends StatefulWidget {
   final double chipRatio;
   final ChipShape chipShape;
   final double handleSize;
+  final Color borderColor;
+  final int strokeWidth;
+  
   const ImgCrop(
       {Key key,
       this.image,
@@ -29,7 +32,9 @@ class ImgCrop extends StatefulWidget {
       this.chipRadius = 150,
       this.chipRatio = 1.0,
       this.chipShape = ChipShape.circle,
-      this.handleSize = 10.0})
+      this.handleSize = 10.0,
+      this.borderColor = Colors.white,
+      this.strokeWidth = 2})
       : assert(image != null),
         assert(maximumScale != null),
         assert(handleSize != null && handleSize >= 0.0),
@@ -43,7 +48,9 @@ class ImgCrop extends StatefulWidget {
       this.chipRadius = 150,
       this.chipRatio = 1.0,
       this.chipShape = ChipShape.circle,
-      this.handleSize = 10.0})
+      this.handleSize = 10.0,
+      this.borderColor = Colors.white,
+      this.strokeWidth = 2})
       : image = FileImage(file, scale: scale),
         assert(maximumScale != null),
         super(key: key);
@@ -57,7 +64,9 @@ class ImgCrop extends StatefulWidget {
       this.onImageError,
       this.chipRatio = 1.0,
       this.chipShape = ChipShape.circle,
-      this.handleSize = 10.0})
+      this.handleSize = 10.0,
+      this.borderColor = Colors.white,
+      this.strokeWidth = 2})
       : image = AssetImage(assetName, bundle: bundle, package: package),
         assert(maximumScale != null),
         super(key: key);
@@ -192,6 +201,8 @@ class ImgCropState extends State<ImgCrop> with TickerProviderStateMixin, Drag {
             active: _activeController.value,
             chipShape: widget.chipShape,
             handleSize: widget.handleSize,
+            borderColor: widget.borderColor,
+            strokeWidth: widget.strokeWidth
           ),
         ),
       ),
@@ -388,6 +399,8 @@ class _CropPainter extends CustomPainter {
   final double active;
   final ChipShape chipShape;
   final double handleSize;
+  final Color borderColor;
+  final int strokeWidth
 
   _CropPainter(
       {this.image,
@@ -397,7 +410,9 @@ class _CropPainter extends CustomPainter {
       this.scale,
       this.active,
       this.chipShape,
-      this.handleSize});
+      this.handleSize, 
+      this.borderColor, 
+      this.strokeWidth});
 
   @override
   bool shouldRepaint(_CropPainter oldDelegate) {
@@ -483,8 +498,8 @@ class _CropPainter extends CustomPainter {
     canvas.drawRect(Rect.fromLTRB(0.0, 0.0, rect.width, rect.height), paint);
     paint
       ..isAntiAlias = true
-      ..color = Colors.white
-      ..strokeWidth = 2
+      ..color = borderColor
+      ..strokeWidth = strokeWidth
       ..style = PaintingStyle.stroke;
     if (chipShape == ChipShape.rect) {
       canvas.drawRect(
