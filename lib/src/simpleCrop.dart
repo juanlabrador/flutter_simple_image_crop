@@ -22,7 +22,7 @@ class ImgCrop extends StatefulWidget {
   final ChipShape chipShape;
   final double handleSize;
   final Color borderColor;
-  final int strokeWidth;
+  final double strokeWidth;
   
   const ImgCrop(
       {Key key,
@@ -400,7 +400,7 @@ class _CropPainter extends CustomPainter {
   final ChipShape chipShape;
   final double handleSize;
   final Color borderColor;
-  final int strokeWidth
+  final double strokeWidth
 
   _CropPainter(
       {this.image,
