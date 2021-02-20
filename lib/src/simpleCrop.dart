@@ -460,8 +460,8 @@ class _CropPainter extends CustomPainter {
         image.height.toDouble(),
       );
       final dst = Rect.fromLTWH(
-        image.width * scale * ratio,
-        image.height * scale * ratio,
+        view.left * image.width * scale * ratio,
+        view.top * image.height * scale * ratio,
         image.width * scale * ratio,
         image.height * scale * ratio,
       );
