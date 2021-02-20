@@ -426,8 +426,8 @@ class _CropPainter extends CustomPainter {
 
   currentRact(size) {
     return Rect.fromLTWH(
-      5,
-      5,
+      handleSize / 2,
+      handleSize / 2,
       size.width,
       size.height,
     );
@@ -460,8 +460,8 @@ class _CropPainter extends CustomPainter {
         image.height.toDouble(),
       );
       final dst = Rect.fromLTWH(
-        view.left * image.width * scale * ratio,
-        view.top * image.height * scale * ratio,
+        image.width * scale * ratio,
+        image.height * scale * ratio,
         image.width * scale * ratio,
         image.height * scale * ratio,
       );
